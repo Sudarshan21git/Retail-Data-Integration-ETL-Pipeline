@@ -1,4 +1,6 @@
-Project Title
+This project implements an end-to-end ETL pipeline using Pentaho Spoon, integrating 5+ heterogeneous data sources (CSV, XML, JSON, Excel, ZIP). It processes and cleans 10,000+ customer and sales records through automated validation, fuzzy matching, deduplication, and error reprocessing loops. Reference data lookups, value mapping, and field-level filtering ensure standardized, production-ready output.
+
+
 
 Multi-Source Customer Data Integration using Pentaho PDI                          
 
