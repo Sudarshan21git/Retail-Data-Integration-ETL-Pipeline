@@ -790,7 +790,7 @@ Negative Age Correction
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>F:\ETL ROLE\data store\CustomerData_Central.txt</name>
+      <name>F:\ETL Pipline Project\input_data\CustomerData_Central.txt</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1101,7 +1101,7 @@ Negative Age Correction
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/data store/CustomerData_South.zip</name>
+      <name>F:\ETL Pipline Project\input_data\CustomerData_South.zip</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1326,7 +1326,7 @@ Negative Age Correction
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>F:\ETL ROLE\data store\CustomerData_West</name>
+      <name>F:\ETL Pipline Project\input_data\CustomerData_West</name>
       <filemask>CustomerData_West_.+</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1672,6 +1672,45 @@ Negative Age Correction
     </GUI>
   </step>
   <step>
+    <name>Memory group by</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>Age category</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>Number of age catgoery</aggregate>
+        <subject>Age</subject>
+        <type>COUNT_DISTINCT</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1536</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Merge Corrected Records</name>
     <type>SortedMerge</type>
     <description/>
@@ -1727,12 +1766,7 @@ Negative Age Correction
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name>${Internal.Entry.Current.Directory}/data store/CustomerData_East.xlsx</name>
+      <name>F:\ETL Pipline Project\input_data\CustomerData_East.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -1885,6 +1919,51 @@ Negative Age Correction
     <GUI>
       <xloc>176</xloc>
       <yloc>496</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Number range</name>
+    <type>NumberRange</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <inputField>Age</inputField>
+    <outputField>Age category</outputField>
+    <fallBackValue>unknown</fallBackValue>
+    <rules>
+      <rule>
+        <lower_bound>0.0</lower_bound>
+        <upper_bound>35.0</upper_bound>
+        <value>Young</value>
+      </rule>
+      <rule>
+        <lower_bound>35.0</lower_bound>
+        <upper_bound>60.0</upper_bound>
+        <value>Middle Age</value>
+      </rule>
+      <rule>
+        <lower_bound>60.0</lower_bound>
+        <upper_bound>1.7976931348623157E308</upper_bound>
+        <value>Senior Citizen</value>
+      </rule>
+    </rules>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1392</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2377,12 +2456,12 @@ Negative Age Correction
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>${Internal.Entry.Current.Directory}/Pentaho forETL &amp;Data ntegration Masterclass/Pentaho for ETL &amp; Data Integration Masterclass 2022/Data/Customer Data/LookupForStates.xlsx</name>
+      <name/>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>N</include_subfolders>
-      <name/>
+      <name>F:\ETL Pipline Project\lookup_data\LookupForStates.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2511,90 +2590,6 @@ Negative Age Correction
     <GUI>
       <xloc>1056</xloc>
       <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Number range</name>
-    <type>NumberRange</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <inputField>Age</inputField>
-    <outputField>Age category</outputField>
-    <fallBackValue>unknown</fallBackValue>
-    <rules>
-      <rule>
-        <lower_bound>0.0</lower_bound>
-        <upper_bound>35.0</upper_bound>
-        <value>Young</value>
-      </rule>
-      <rule>
-        <lower_bound>35.0</lower_bound>
-        <upper_bound>60.0</upper_bound>
-        <value>Middle Age</value>
-      </rule>
-      <rule>
-        <lower_bound>60.0</lower_bound>
-        <upper_bound>1.7976931348623157E308</upper_bound>
-        <value>Senior Citizen</value>
-      </rule>
-    </rules>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1392</xloc>
-      <yloc>784</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>Age category</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>Number of age catgoery</aggregate>
-        <subject>Age</subject>
-        <type>COUNT_DISTINCT</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1536</xloc>
-      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

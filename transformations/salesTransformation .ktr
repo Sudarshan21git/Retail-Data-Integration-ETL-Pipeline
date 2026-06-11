@@ -564,7 +564,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>${Internal.Entry.Current.Directory}/Pentaho forETL &amp;Data ntegration Masterclass/Pentaho for ETL &amp; Data Integration Masterclass 2022/Data/Product Data/ProductLookupForSales.csv</filename>
+    <filename>F:\ETL Pipline Project\lookup_data\ProductLookupForSales.csv</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -779,6 +779,45 @@
     </GUI>
   </step>
   <step>
+    <name>Memory group by</name>
+    <type>MemoryGroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>Product_ID</name>
+      </field>
+    </group>
+    <fields>
+      <field>
+        <aggregate>Sum of sales</aggregate>
+        <subject>Sales</subject>
+        <type>SUM</type>
+        <valuefield/>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1840</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Microsoft Excel writer</name>
     <type>TypeExitExcelWriterStep</type>
     <description/>
@@ -803,7 +842,7 @@
     <appendLines>N</appendLines>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/Output/Sales date incorrect</name>
+      <name>F:\ETL Pipline Project\Output\Sales date incorrect.xls</name>
       <extention>xls</extention>
       <create_parent>N</create_parent>
       <do_not_open_newfile_init>N</do_not_open_newfile_init>
@@ -1815,17 +1854,7 @@
     <length>Characters</length>
     <add_to_result_filenames>Y</add_to_result_filenames>
     <file>
-      <name>${Internal.Entry.Current.Directory}/data store/SalesforAWSandHadoop.csv</name>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
-      <filemask/>
-      <exclude_filemask/>
-      <file_required>N</file_required>
-      <include_subfolders>N</include_subfolders>
-      <name/>
+      <name>F:\ETL Pipline Project\input_data\SalesforAWSandHadoop.csv</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -2105,45 +2134,6 @@
     <GUI>
       <xloc>1552</xloc>
       <yloc>336</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>Product_ID</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>Sum of sales</aggregate>
-        <subject>Sales</subject>
-        <type>SUM</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1840</xloc>
-      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
