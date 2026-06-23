@@ -522,7 +522,17 @@
     </hop>
     <hop>
       <from>Select values 4</from>
-      <to>Memory group by</to>
+      <to>Database lookup</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Database lookup</from>
+      <to>Database lookup 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Database lookup 2</from>
+      <to>Table output</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -548,8 +558,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>848</xloc>
-      <yloc>192</yloc>
+      <xloc>416</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -611,7 +621,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1408</xloc>
+      <xloc>992</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -652,8 +662,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1840</xloc>
-      <yloc>192</yloc>
+      <xloc>1456</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -696,8 +706,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1552</xloc>
-      <yloc>192</yloc>
+      <xloc>1152</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -740,8 +750,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1840</xloc>
-      <yloc>304</yloc>
+      <xloc>1456</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -773,47 +783,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>Product_ID</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>Sum of sales</aggregate>
-        <subject>Sales</subject>
-        <type>SUM</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1840</xloc>
-      <yloc>528</yloc>
+      <xloc>704</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1024,8 +995,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1696</xloc>
-      <yloc>304</yloc>
+      <xloc>1312</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1272,8 +1243,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>144</yloc>
+      <xloc>144</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1334,8 +1305,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1248</xloc>
-      <yloc>192</yloc>
+      <xloc>832</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1365,8 +1336,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1696</xloc>
-      <yloc>192</yloc>
+      <xloc>1312</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1396,7 +1367,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1840</xloc>
+      <xloc>1456</xloc>
       <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1438,8 +1409,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>608</xloc>
-      <yloc>144</yloc>
+      <xloc>240</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1480,8 +1451,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>288</yloc>
+      <xloc>240</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1522,8 +1493,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1408</xloc>
-      <yloc>192</yloc>
+      <xloc>992</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1810,8 +1781,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>144</yloc>
+      <xloc>32</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2065,8 +2036,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>240</xloc>
-      <yloc>288</yloc>
+      <xloc>32</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2100,8 +2071,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>992</xloc>
-      <yloc>192</yloc>
+      <xloc>560</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2122,7 +2093,43 @@
     <limitRowsNumber>0</limitRowsNumber>
     <logmessage>Refernce of product ID not found in product lookup</logmessage>
     <fields>
-      </fields>
+      <field>
+        <name>﻿Order_Line</name>
+      </field>
+      <field>
+        <name>Order_ID</name>
+      </field>
+      <field>
+        <name>Order_Date</name>
+      </field>
+      <field>
+        <name>Ship_Date</name>
+      </field>
+      <field>
+        <name>Ship_Mode</name>
+      </field>
+      <field>
+        <name>Customer_ID</name>
+      </field>
+      <field>
+        <name>Product_ID</name>
+      </field>
+      <field>
+        <name>Sales</name>
+      </field>
+      <field>
+        <name>Quantity</name>
+      </field>
+      <field>
+        <name>Discount</name>
+      </field>
+      <field>
+        <name>Profit</name>
+      </field>
+      <field>
+        <name>Product Name</name>
+      </field>
+    </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2132,8 +2139,192 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1552</xloc>
-      <yloc>336</yloc>
+      <xloc>1152</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Database lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres_etl_practice</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>public</schema>
+      <table>product</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>Product_ID</name>
+        <field>product_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>surr_id</name>
+        <rename>s_prod_id</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1456</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Database lookup 2</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres_etl_practice</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>public</schema>
+      <table>customer</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>Y</eat_row_on_failure>
+      <key>
+        <name>Customer_ID</name>
+        <field>customer_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>surr_id</name>
+        <rename>s_cust_id</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1456</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres_etl_practice</connection>
+    <schema>public</schema>
+    <table>finalsales</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>order_line</column_name>
+        <stream_name>﻿Order_Line</stream_name>
+      </field>
+      <field>
+        <column_name>order_id</column_name>
+        <stream_name>Order_ID</stream_name>
+      </field>
+      <field>
+        <column_name>order_date</column_name>
+        <stream_name>Order_Date</stream_name>
+      </field>
+      <field>
+        <column_name>ship_date</column_name>
+        <stream_name>Ship_Date</stream_name>
+      </field>
+      <field>
+        <column_name>ship_mode</column_name>
+        <stream_name>Ship_Mode</stream_name>
+      </field>
+      <field>
+        <column_name>s_cust_id</column_name>
+        <stream_name>s_cust_id</stream_name>
+      </field>
+      <field>
+        <column_name>s_prod_id</column_name>
+        <stream_name>s_prod_id</stream_name>
+      </field>
+      <field>
+        <column_name>sales</column_name>
+        <stream_name>Sales</stream_name>
+      </field>
+      <field>
+        <column_name>quantity</column_name>
+        <stream_name>Quantity</stream_name>
+      </field>
+      <field>
+        <column_name>discount</column_name>
+        <stream_name>Discount</stream_name>
+      </field>
+      <field>
+        <column_name>profit</column_name>
+        <stream_name>Profit</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1456</xloc>
+      <yloc>704</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

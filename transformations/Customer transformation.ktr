@@ -435,17 +435,23 @@
   </info>
   <notepads>
     <notepad>
-      <note>Multi-Source Data Integration
-State Lookup Reference Data
-Error Handling &amp; Reprocessing
-Negative Age Correction
+      <note>📌 Customer Transformation Pipeline
 
-
+✅ Multi-Source Ingestion (TXT, Excel, ZIP, Multiple Files)
+✅ Sort &amp; Sorted Merge
+✅ Unique Rows (Deduplication)
+✅ Value Mapper &amp; Replace in String (Standardization)
+✅ Fuzzy Match (Approximate Name Matching)
+✅ Age Validation &amp; Error Handling
+✅ Negative Age Correction (Calculator)
+✅ Reprocess Error Records
+✅ State Lookup Reference Data
+✅ Combination Lookup/Update + Update (Final Load)
 </note>
-      <xloc>864</xloc>
-      <yloc>64</yloc>
-      <width>215</width>
-      <heigth>150</heigth>
+      <xloc>592</xloc>
+      <yloc>544</yloc>
+      <width>389</width>
+      <heigth>250</heigth>
       <fontname>Segoe UI</fontname>
       <fontsize>9</fontsize>
       <fontbold>N</fontbold>
@@ -570,7 +576,7 @@ Negative Age Correction
     </hop>
     <hop>
       <from>Filter rows</from>
-      <to>Calculator(Correct Negative Age)</to>
+      <to>Calculator(Correct-Negative Age)</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -579,7 +585,7 @@ Negative Age Correction
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Calculator(Correct Negative Age)</from>
+      <from>Calculator(Correct-Negative Age)</from>
       <to>Select values 3</to>
       <enabled>Y</enabled>
     </hop>
@@ -590,12 +596,12 @@ Negative Age Correction
     </hop>
     <hop>
       <from>Merge Corrected Records</from>
-      <to>Number range</to>
+      <to>Combination lookup/update</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Number range</from>
-      <to>Memory group by</to>
+      <from>Combination lookup/update</from>
+      <to>Update</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -711,7 +717,7 @@ Negative Age Correction
     </GUI>
   </step>
   <step>
-    <name>Calculator(Correct Negative Age)</name>
+    <name>Calculator(Correct-Negative Age)</name>
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
@@ -988,7 +994,7 @@ Negative Age Correction
       <schema_name/>
     </partitioning>
     <send_true_to>Merge Corrected Records</send_true_to>
-    <send_false_to>Calculator(Correct Negative Age)</send_false_to>
+    <send_false_to>Calculator(Correct-Negative Age)</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
@@ -1672,45 +1678,6 @@ Negative Age Correction
     </GUI>
   </step>
   <step>
-    <name>Memory group by</name>
-    <type>MemoryGroupBy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>Age category</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>Number of age catgoery</aggregate>
-        <subject>Age</subject>
-        <type>COUNT_DISTINCT</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1536</xloc>
-      <yloc>784</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
     <name>Merge Corrected Records</name>
     <type>SortedMerge</type>
     <description/>
@@ -1919,51 +1886,6 @@ Negative Age Correction
     <GUI>
       <xloc>176</xloc>
       <yloc>496</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Number range</name>
-    <type>NumberRange</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <inputField>Age</inputField>
-    <outputField>Age category</outputField>
-    <fallBackValue>unknown</fallBackValue>
-    <rules>
-      <rule>
-        <lower_bound>0.0</lower_bound>
-        <upper_bound>35.0</upper_bound>
-        <value>Young</value>
-      </rule>
-      <rule>
-        <lower_bound>35.0</lower_bound>
-        <upper_bound>60.0</upper_bound>
-        <value>Middle Age</value>
-      </rule>
-      <rule>
-        <lower_bound>60.0</lower_bound>
-        <upper_bound>1.7976931348623157E308</upper_bound>
-        <value>Senior Citizen</value>
-      </rule>
-    </rules>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1392</xloc>
-      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2590,6 +2512,126 @@ Negative Age Correction
     <GUI>
       <xloc>1056</xloc>
       <yloc>336</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Combination lookup/update</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <schema>public</schema>
+    <table>customer</table>
+    <connection>postgres_etl_practice</connection>
+    <commit>1</commit>
+    <cache_size>9999</cache_size>
+    <replace>N</replace>
+    <preloadCache>N</preloadCache>
+    <crc>N</crc>
+    <crcfield>hashcode</crcfield>
+    <fields>
+      <key>
+        <name>Customer ID</name>
+        <lookup>customer_id</lookup>
+      </key>
+      <return>
+        <name>surr_id</name>
+        <creation_method>tablemax</creation_method>
+        <use_autoinc>N</use_autoinc>
+      </return>
+    </fields>
+    <sequence/>
+    <last_update_field/>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1392</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Update</name>
+    <type>Update</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>postgres_etl_practice</connection>
+    <skip_lookup>N</skip_lookup>
+    <commit>1</commit>
+    <use_batch>N</use_batch>
+    <error_ignored>N</error_ignored>
+    <ignore_flag_field/>
+    <lookup>
+      <schema>public</schema>
+      <table>customer</table>
+      <key>
+        <name>Customer ID</name>
+        <field>customer_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>customer_name</name>
+        <rename>Customer Name</rename>
+      </value>
+      <value>
+        <name>segment</name>
+        <rename>Segment</rename>
+      </value>
+      <value>
+        <name>age</name>
+        <rename>Age</rename>
+      </value>
+      <value>
+        <name>country</name>
+        <rename>Country</rename>
+      </value>
+      <value>
+        <name>city</name>
+        <rename>City</rename>
+      </value>
+      <value>
+        <name>state_name</name>
+        <rename>State</rename>
+      </value>
+      <value>
+        <name>postal_code</name>
+        <rename>Postal Code</rename>
+      </value>
+      <value>
+        <name>region</name>
+        <rename>Region</rename>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1392</xloc>
+      <yloc>864</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
